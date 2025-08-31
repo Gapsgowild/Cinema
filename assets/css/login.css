@@ -1,5 +1,181 @@
+/* Reset cơ bản */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Biến màu và thông số chung */
+:root {
+  --bg: #0b1020;
+  --card: #121937;
+  --text: #e9ecf8;
+  --muted: #9aa3c7;
+  --primary: #5b8cff;
+  --primary-600: #4b77df;
+  --ring: rgba(91, 140, 255, 0.5);
+  --border: #273056;
+  --error: #ff6b6b;
+  --shadow: 0 10px 30px rgba(0,0,0,0.35);
+  --radius: 16px;
+}
+
+/* Body nền gradient */
+html, body {
+  height: 100%;
+  font-family: system-ui, sans-serif;
+  background: radial-gradient(1200px 800px at 20% 0%, #1a2250 0%, #0b1020 60%, #070b17 100%);
+  color: var(--text);
+}
+
+/* Container căn giữa */
+.auth-wrapper {
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 32px 16px;
+}
+
+/* Thẻ chứa form */
+.card {
+  width: 100%;
+  max-width: 440px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 20px 28px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+/* Ẩn input radio */
+.tab-input { display: none; }
+
+/* Header tab */
+.tab-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  background: rgba(255,255,255,0.04);
+  padding: 6px;
+  border-radius: 12px;
+  margin-bottom: 14px;
+}
+
+.tab {
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 10px;
+  cursor: pointer;
+  color: var(--muted);
+  user-select: none;
+  transition: background .2s ease, color .2s ease;
+}
+
+/* Tab đang chọn */
+#tab-login:checked ~ .tab-header label[for="tab-login"],
+#tab-register:checked ~ .tab-header label[for="tab-register"] {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+/* Gạch chân mờ */
+.tab-underline {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin-bottom: 8px;
+}
+
+/* Chỉ hiển thị form tương ứng */
+.form { display: none; }
+#tab-login:checked ~ #login-form { display: block; }
+#tab-register:checked ~ #register-form { display: block; }
+
+/* Form group */
+.form-group {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0;
+}
+
+/* Input */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(7, 11, 23, 0.7);
+  color: var(--text);
+  outline: none;
+  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+input::placeholder { color: #aab3d6; opacity: 0.7; }
+
+input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--ring);
+  background: rgba(7, 11, 23, 0.9);
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* Row checkbox + link */
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 6px 0 16px;
+  gap: 12px;
+}
+
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* Button */
+.btn {
+  width: 100%;
+  padding: 12px 16px;
+  border: 0;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform .04s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.btn.primary {
+  background: linear-gradient(180deg, var(--primary), var(--primary-600));
+  color: white;
+  box-shadow: 0 8px 18px rgba(91, 140, 255, 0.35);
+}
+
+.btn.primary:hover { filter: brightness(1.05); }
+.btn:active { transform: translateY(1px); }
+
+/* Link & text */
+.link { color: var(--primary); cursor: pointer; }
+.muted { color: var(--muted); }
+.switch-hint { text-align: center; margin-top: 14px; }
+
+/* Footer */
+.footer {
+  margin-top: 20px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
 }
